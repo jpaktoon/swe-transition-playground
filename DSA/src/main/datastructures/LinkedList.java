@@ -1,4 +1,4 @@
-package main.datastructures.linkedlist;
+package main.datastructures;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -57,7 +57,7 @@ public class LinkedList {
         System.out.println("Length: " + length);
     }
 
-    public void append(int value) {
+    public void append(int value) { // O(1)
         Node newNode = new Node(value);
         if (length == 0) {
             head = newNode;
@@ -69,7 +69,7 @@ public class LinkedList {
         length++;
     }
 
-    public Node removeLast() {
+    public Node removeLast() { // O(n)
         if (length == 0) return null;
         Node temp = head;
         Node pre = head;
@@ -87,7 +87,7 @@ public class LinkedList {
         return temp;
     }
 
-    public void prepend(int value) {
+    public void prepend(int value) { //O(1)
         Node newNode = new Node(value);
         if (length == 0) {
             head = newNode;
@@ -99,15 +99,17 @@ public class LinkedList {
         length++;
     }
 
-    public Node removeFirst() {
+    public Node removeFirst() { // O(1)
         if (length == 0) return null;
         Node temp = head;
-        head = head.next;
-        temp.next = null;
-        length--;
-        if (length == 0) {
+        if (length == 1) {
+            head = null;
             tail = null;
+        } else {
+            head = head.next;
+            temp.next = null;
         }
+        length--;
         return temp;
     }
 
@@ -172,6 +174,19 @@ public class LinkedList {
             temp.next = before;
             before = temp;
             temp = after;
+        }
+    }
+
+    public void reverse2(){
+        Node temp = head;
+        Node current = head;
+        head = tail;
+        tail = head;
+        while(current != null){
+            Node next = current.next;
+            current.next = temp.next;
+            temp.next = current;
+            current = next;
         }
     }
 
@@ -434,5 +449,19 @@ public class LinkedList {
 
         // Adjust 'head' if the first node was part of sublist.
         head = dummyNode.next;
+    }
+
+    void duplicateZero(){
+        Node current = head;
+        while (current != null) {
+            if (current.value == 0) {
+                Node temp = current.next;
+                current.next = new Node(0);
+                current.next.next = temp;
+                current = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
     }
 }
