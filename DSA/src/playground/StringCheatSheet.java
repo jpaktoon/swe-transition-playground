@@ -5,7 +5,7 @@ public class StringCheatSheet {
     public static void main(String[] args) {
         // String
         String str1 = "Hello"; String str2 = "Hello";
-        String str3 = new String("Hello"); // not recommend if not necessary. Only a specfic cases such as new String(char[]);
+        String str3 = new String("Hello"); // time: O(n), space O(n) - not recommend if not necessary. Only a specific cases such as new String(char[]);
         // String pool
         System.out.println(str1 == str2); // true - O(1)
         System.out.println(str1 == "Hello"); // true - O(1)
@@ -51,5 +51,44 @@ public class StringCheatSheet {
         System.out.println(Integer.valueOf("5000")); // Integer: 5000
         System.out.println(String.valueOf(88.999)); // String: "88.999"
         System.out.println(Double.valueOf("88.999")); // Double: 88.999
+
+        // Reverse String
+        System.out.println(reverseString("Hello")); // "olleH"
+        System.out.println(reverseString("am")); // "ma"
+        System.out.println(reverseString("b")); // "b"
+        System.out.println(reverseString("")); // ""
+        System.out.println(reverseString(null)); // null
+
+        // Reverse words
+        System.out.println(reverseWords("I am engineer")); // "I ma reenigne"
+        System.out.println(reverseWords("ab")); // "ba"
+        System.out.println(reverseWords("a")); // "a"
+        System.out.println(reverseWords("")); // ""
+        System.out.println(reverseWords(null)); // null
+    }
+
+    // Reverse words
+    public static String reverseWords(String words){
+        if (words == null) return null;
+
+        String[] items = words.split(" ");
+        for (int i = 0; i < items.length; i++) {
+            String reversed = reverseString(items[i]);
+            items[i] = reversed;
+        }
+        return String.join(" ", items);
+    }
+
+    // Reverse String
+    public static String reverseString(String word){
+        if (word == null) return null;
+        // time : O(n), space : O(1)
+        char[] letters = word.toCharArray();
+        for (int i = 0; i < letters.length / 2; i++) {
+            char temp = letters[letters.length - i - 1];
+            letters[letters.length - i - 1] = letters[i];
+            letters[i] = temp;
+        }
+        return new String(letters);
     }
 }
