@@ -40,6 +40,10 @@ public class StringCheatSheet {
         System.out.println(str.substring(0, 5)); // String: "Hello" from index 0 to 4 - time: O(1), space O(n) new string creation
         String[] strSplit = str.split(" "); // String[]: ["Hello", "I", "am", "engineer"] - time: O(n), space O(n)
 
+        String strWithPunctuation = "Hello I'm number 1 engineer";
+        // remove Punctuation, using regex to replace all for non char or space or number
+        System.out.println(strWithPunctuation.replaceAll("[^a-zA-Z\\s\\d]", "")); // Using regex - O (??), String "Hello Im engineer"
+
         String a = "a"; String b = "bb";
         System.out.println(a.concat(b)); // String: abb - time: o(n + m), space: o(n + m)
         System.out.println(a); // still be "a"
