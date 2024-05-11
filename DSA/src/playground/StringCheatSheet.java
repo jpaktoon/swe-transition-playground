@@ -1,5 +1,8 @@
 package playground;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class StringCheatSheet {
 
     public static void main(String[] args) {
@@ -69,8 +72,17 @@ public class StringCheatSheet {
         System.out.println(reverseWords("a")); // "a"
         System.out.println(reverseWords("")); // ""
         System.out.println(reverseWords(null)); // null
+
+
+        System.out.println("a".repeat(5)); // "aaaaa"
     }
 
+    // Prepend using string builder
+    public static String prependPath(String dir) {
+        StringBuilder cPath = new StringBuilder();
+        cPath.insert(0, "/" + dir);
+        return cPath.toString();
+    }
     // Reverse words
     public static String reverseWords(String words){
         if (words == null) return null;
@@ -94,5 +106,23 @@ public class StringCheatSheet {
             letters[i] = temp;
         }
         return new String(letters);
+    }
+
+    public String reverse(String str)
+    {
+        if (str.isEmpty())
+            return str;
+        //Calling Function Recursively
+        return reverse(str.substring(1)) + str.charAt(0);
+    }
+
+    public boolean isPalindrome(String s) {
+        char[] c = s.toCharArray();
+        return isPalindrome(c, c.length);
+    }
+
+    public boolean isPalindrome(char[] c, int n) {
+        if (n <=1 ) return true;
+        return c[c.length - n] == c[n-1] && isPalindrome(c, n-1);
     }
 }

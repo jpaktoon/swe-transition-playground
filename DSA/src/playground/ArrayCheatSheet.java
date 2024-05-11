@@ -3,14 +3,18 @@ package playground;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ArrayCheatSheet {
     public static void main(String[] args){
         // Array
         String[] s0 = new String[5]; // fix size = 5, Time O(1), Space O(n)
+        System.out.println(s0.length); // int 5 even there is no element assigned.
+        System.out.println(s0[0]); // time O(1), space O(1), String: null
+
         String[] s1 = {"a", "b"}; // fix size = 2, Time O(1), Space O(n)
 
-        System.out.println(s0[0]); // time O(1), space O(1), String: null
         System.out.println(s1[0]); // time O(1), space O(1), String: "a"
         System.out.println(s1[1]); // time O(1), space O(1), String: "b"
         System.out.println(Arrays.toString(s1)); // String: [a, b]
@@ -57,6 +61,9 @@ public class ArrayCheatSheet {
         as1.addAll(1, fruits2); // time: O(m+n), space O(m+n)
         System.out.println(as1); // String: [begin, Apple, Banana, Cherry, test, Apple, Banana, Orange]
 
+        ArrayList<String> subFruit = new ArrayList<>(Arrays.asList(fruitsArray).subList(1, fruits1.size()));
+        System.out.println("subList: " + subFruit); // String: [Banana, Orange]
+
         // Traversal - all // time O(n), space O(1)
         StringBuilder result = new StringBuilder();
         for (String item : fruits2) { // prefer
@@ -88,5 +95,25 @@ public class ArrayCheatSheet {
         System.out.println(as1); // String : [begin, Banana, Cherry, test, Apple, Banana, Orange]
         as1.remove("Banana"); // time O(n), space O(1)
         System.out.println(as1); // String : [begin, Cherry, test, Apple, Banana, Orange]
+
+        // Sort
+        int[] nums = {4,5,3,7,1,4,3,2};
+        Arrays.sort(nums); // Quick sort, O(n)
+    }
+
+    public static List<Integer> convertArrayToList(int[] items ) {
+        List<Integer> itemsList = Arrays.stream(items)
+                .boxed()
+                .collect(Collectors.toList());
+        return itemsList;
+    }
+
+    public static List<Integer> convertArrayToListInLoop(int[] items ) {
+        List<Integer> itemsList = new ArrayList<>();
+        for (int item : items)
+        {
+            itemsList.add(item);
+        }
+        return itemsList;
     }
 }

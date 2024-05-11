@@ -67,4 +67,38 @@ public class LinkedListCheatSheet {
         // Delete whole
         llc.clear(); // O(n), internally it also clears all the links between nodes
     }
+
+    public class ListNode {
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
+
+    // Given the head of a linked list, remove the nth node from the end of the list and return its head.
+    // https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
+    public static ListNode removeNthFromEnd(ListNode head, int n) {
+        if (head == null) return head;
+
+        ListNode fast = head;
+        ListNode slow = head;
+        int i = 0;
+        while (fast != null) {
+            fast = fast.next;
+            if ( i > n ) {
+                slow = slow.next;
+            }
+            i++;
+        }
+
+        // edge case slow at the head
+        if (i == n) head = head.next;
+        // slow is not tail
+        else if (slow.next != null) slow.next = slow.next.next;
+        // edge case one node
+        else head = null;
+
+        return head;
+    }
 }
