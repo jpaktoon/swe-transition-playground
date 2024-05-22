@@ -72,7 +72,7 @@ public class QueueCheatSheet {
 
         // For each
         for (Integer integer : pQueue) {
-            System.out.print(integer + " "); // 15 20 15 *** be careful
+            System.out.print(integer + " "); // 15 20 15 *** be careful, it is Heap so the elements is not sorted.
         }
         System.out.println();
 
@@ -97,7 +97,7 @@ public class QueueCheatSheet {
 
         /*
          ***********
-         * Deque : LinkedList - add() and poll() / remove() and peek()
+         * Deque : ArrayDeque - add() and poll() / remove() and peek()
          * ********
         */
         Deque<String> xmenQueue = new ArrayDeque<>();
