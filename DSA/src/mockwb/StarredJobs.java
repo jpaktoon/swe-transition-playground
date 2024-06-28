@@ -1,16 +1,9 @@
 package mockwb;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 public class StarredJobs {
-
-    int leastPriority;
-
-    Queue<Job> pQueue;
+    private final TreeSet<Job> treeSet;
 
     static class Job implements Comparable<Job>{
         int jobId;
@@ -23,7 +16,7 @@ public class StarredJobs {
 
         @Override
         public String toString() {
-           return String.valueOf(this.jobId);
+            return String.valueOf(this.jobId);
         }
 
         @Override
@@ -46,47 +39,37 @@ public class StarredJobs {
         }
     }
 
-    StarredJobs() {
-        leastPriority = 0;
-        pQueue = new PriorityQueue<>();
+    public StarredJobs() {
+        treeSet = new TreeSet<>();
     }
 
-    void add(int id) {
-        if (pQueue.isEmpty()) {
-            // O(1)
-            pQueue.add(new Job(id, 0));
+    public void add(int id) {
+        if (treeSet.isEmpty()) {
+            treeSet.add(new Job(id, 0));
         } else {
-            leastPriority--;
             // O(log n)
-            pQueue.add(new Job(id, leastPriority));
+            int leastPriority = treeSet.last().priority - 1;
+            treeSet.add(new Job(id, leastPriority));
         }
     }
 
     void star(int id) {
-        if (!pQueue.isEmpty()) {
-            // O(1)
-            int topPriority = pQueue.peek().priority + 1;
-            Job starredJob = new Job(id, topPriority);
-            // O(n)
-            pQueue.remove(starredJob);
+        if (!treeSet.isEmpty()) {
+            remove(id);
             // O(log n)
-            pQueue.add(new Job(id, topPriority));
+            int topPriority = treeSet.first().priority + 1;
+            treeSet.add(new Job(id, topPriority));
         }
     }
 
     void remove(int id) {
-        Job removedJob = new Job(id, 0);
-        if (!pQueue.isEmpty()) {
-            // O(n)
-            pQueue.remove(removedJob);
-        }
+        // O(n)
+        treeSet.removeIf(job -> job.jobId == id);
     }
 
-    void show() {
-        List<Job> tempList = new ArrayList<>(pQueue);
-        // O n(log n) -> merge sort
-        tempList.sort(Comparator.naturalOrder());
-        System.out.println(tempList);
+    public void show() {
+        // O(n)
+        System.out.println(treeSet);
     }
 
     public static void main(String[] args) {
