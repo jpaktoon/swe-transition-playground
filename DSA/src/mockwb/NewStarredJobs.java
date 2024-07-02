@@ -34,7 +34,6 @@ public class NewStarredJobs {
     }
 
     void show() {
-
         System.out.print("[");
         if (!stars.isEmpty()) {
             // O(n)
@@ -70,7 +69,7 @@ public class NewStarredJobs {
         // [4, 3, 2, 5]
         sol.show();
         // new test
-        sol.remove(3);
+        sol.remove(4);
         sol.star(5);
         // [5,4,2]
         sol.show();
