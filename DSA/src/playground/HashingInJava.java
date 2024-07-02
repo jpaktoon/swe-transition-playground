@@ -123,10 +123,16 @@ public class HashingInJava {
         // If the specified key is not already associated with a value (or is mapped to null)
         // associates it with the given value and returns null, else returns the current value.
         Integer result = map.putIfAbsent("x", 12);
-        // Removes the entry for the specified key only if it is currently mapped to the specified value.
-        map.remove("x", 12);
         // Replaces the entry for the specified key only if currently mapped to the specified value.
         map.replace("x", 12, 14);
+
+        Integer xValue = map.get("x");
+        System.out.println("value of x before: " + xValue);
+        xValue = 77; // it will not replace the value of x in map
+        System.out.println("value of x after: " + map.get("x"));
+
+        // Removes the entry for the specified key only if it is currently mapped to the specified value.
+        map.remove("x", 12);
     }
 
     public static void createTreeMap() {
@@ -422,6 +428,7 @@ public class HashingInJava {
     }
 
     public static void main(String[] args) {
-        createLinkedHashMap();
+        //createLinkedHashMap();
+        createHashMap(new int[]{});
     }
 }

@@ -1,17 +1,17 @@
 package mockwb;
 
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 
 public class NewStarredJobs {
 
     LinkedHashSet<Integer> jobs;
-    LinkedList<Integer> stars;
+    LinkedHashSet<Integer> stars;
 
     NewStarredJobs() {
         jobs = new LinkedHashSet<>();
-        stars = new LinkedList<>();
+        stars = new LinkedHashSet<>();
     }
 
     void add(int id) {
@@ -22,21 +22,31 @@ public class NewStarredJobs {
     void remove(int id) {
         // O(1)
         jobs.remove(id);
+        // O(1)
+        stars.remove(id);
     }
 
     void star(int id) {
         // O(1)
         jobs.remove(id);
         // O(1)
-        stars.push(id);
+        stars.add(id);
     }
 
     void show() {
-        // O(n)
+
         System.out.print("[");
-        for (int job : stars) {
-            System.out.print(job + ",");
+        if (!stars.isEmpty()) {
+            // O(n)
+            ArrayList<Integer> reversedStars = new ArrayList<>(stars);
+            // Reverse the ArrayList - O(n)
+            Collections.reverse(reversedStars);
+            // O(n)
+            for (int job : reversedStars) {
+                System.out.print(job + ",");
+            }
         }
+
         for (int job : jobs) {
             System.out.print(job + ",");
         }
