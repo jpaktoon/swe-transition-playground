@@ -69,5 +69,10 @@ public class NewStarredJobs {
         sol.star(4);
         // [4, 3, 2, 5]
         sol.show();
+        // new test
+        sol.remove(3);
+        sol.star(5);
+        // [5,4,2]
+        sol.show();
     }
 }
