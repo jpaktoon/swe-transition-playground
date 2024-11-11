@@ -8,35 +8,36 @@ import java.util.Queue;
 
 public class SymmetricTree {
 
+    ArrayDeque<Integer> queue = new ArrayDeque<>();
+    Integer topRootValue = 0;
+    Boolean shouldPop = false;
+    Boolean isSymmetric = true;
+
     public boolean isSymmetric(TreeNode root) {
-        ArrayDeque<TreeNode> lefts = new ArrayDeque<>();
-        ArrayDeque<TreeNode> rights = new ArrayDeque<>();
-
-        if (root != null) {
-            lefts.push(root.left); // to tail
-            rights.push(root.right); // to tail
-        }
-
-        while (!lefts.isEmpty() && !rights.isEmpty()) {
-
-            if (lefts.size() != rights.size()) return false;
-
-            TreeNode left = lefts.pop(); // from tail
-            TreeNode right = rights.poll(); // from head
-            if ((left == null && right != null) ||
-                    (right == null && left != null) ||
-                    (left != null && right != null && left.val != right.val)) {
-                return false;
-            }
-            if (left != null) {
-                lefts.push(left.left);
-                rights.push(left.right);
-            }
-            if (right != null) {
-                lefts.push(right.left);
-                rights.push(right.right);
-            }
-        }
-        return true;
+        topRootValue = root.val;
+        inOrderTraversal(root);
+        return isSymmetric;
     }
+
+    public void inOrderTraversal(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        inOrderTraversal(root.left);
+        if (shouldPop) {
+            if (root.val != queue.pop()) {
+                isSymmetric = false;
+                return;
+            }
+        } else {
+            if (root.val == topRootValue) {
+                shouldPop = true;
+            } else {
+                queue.push(root.val);
+            }
+        }
+        inOrderTraversal(root.right);
+    }
+
 }

@@ -1,6 +1,9 @@
 package playground;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class BinarySearchTreeCheatSheet {
@@ -8,7 +11,7 @@ public class BinarySearchTreeCheatSheet {
     public static class BinarySearchTree {
         public static class BinaryNode {
             public int value;
-            public int height;
+            //public int height;
             public BinaryNode left;
             public BinaryNode right;
         }
@@ -50,6 +53,13 @@ public class BinarySearchTreeCheatSheet {
             inOrder(node.left);
             System.out.print(node.value + " ");
             inOrder(node.right);
+        }
+
+        public static void inOrder(BinaryNode node, List<Integer> results) {
+            if (node == null) return;
+            inOrder(node.left, results);
+            results.add(node.value);
+            inOrder(node.right, results);
         }
 
         // postOrder traversal
@@ -113,6 +123,26 @@ public class BinarySearchTreeCheatSheet {
 
             return node;
         }
+
+        public static int getHeight(BinaryNode root) {
+            if (root == null) {
+                return -1;
+            }
+            return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
+        }
+
+        public static boolean isBST(BinaryNode root) {
+            ArrayList<Integer> inOrders = new ArrayList<>();
+            BinarySearchTree.inOrder(root, inOrders);
+            int min = 0;
+            System.out.println(inOrders);
+            // check the values all sorted in order
+            for (Integer i : inOrders) {
+                if ( i > min) min = i;
+                else return false;
+            }
+            return true;
+        }
     }
 
     // Driver Code
@@ -131,6 +161,7 @@ public class BinarySearchTreeCheatSheet {
         tree.insert(tree.root, 40);
         tree.insert(tree.root, 70);
         tree.insert(tree.root, 60);
+        System.out.println("Height: " + BinarySearchTree.getHeight(tree.root));
         //tree.insert(tree.root, 80);
 
         System.out.println("Original BST: ");
@@ -166,5 +197,20 @@ public class BinarySearchTreeCheatSheet {
         tree.root = BinarySearchTree.delete(tree.root, 50);
         System.out.print("Modified BST tree after deleting both child Node:\n");
         BinarySearchTree.inOrder(tree.root);
+
+        System.out.println();
+        BinarySearchTree t1 = new BinarySearchTree();
+        t1.root = t1.insert(t1.root, 50);
+        System.out.println("Height: " + BinarySearchTree.getHeight(t1.root));
+        t1.insert(t1.root, 30);
+        System.out.println("Height: " + BinarySearchTree.getHeight(t1.root));
+        t1.insert(t1.root, 60);
+        System.out.println("Height: " + BinarySearchTree.getHeight(t1.root));
+        t1.insert(t1.root, 70);
+        System.out.println("Height: " + BinarySearchTree.getHeight(t1.root));
+        t1.insert(t1.root, 40);
+        System.out.println("Height: " + BinarySearchTree.getHeight(t1.root));
+
+        System.out.println("isBST: " + BinarySearchTree.isBST(t1.root));
     }
 }

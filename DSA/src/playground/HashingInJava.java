@@ -1,6 +1,8 @@
 package playground;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
@@ -81,6 +83,8 @@ public class HashingInJava {
         System.out.println("Size of map is:- "
                 + map.size());
 
+        map.forEach((key, value) -> System.out.println(key + ": " + value));
+
         // Printing elements in object of Map
         System.out.println(map);
 
@@ -112,7 +116,7 @@ public class HashingInJava {
         boolean hasKey = map.containsKey("x");
         boolean hasValue = map.containsValue(12);
         Set<Map.Entry<String, Integer>> entries = map.entrySet();
-        map.keySet();
+        Set<String> keys = map.keySet();
         boolean isEmpty = map.isEmpty();
         Collection<Integer> values = map.values();
         map.size();
@@ -333,6 +337,23 @@ public class HashingInJava {
 //        Iterating over list:
 //        South Africa
 //        India
+
+        ArrayList<Integer> list1 = new ArrayList<>();
+        list1.add(1);
+        list1.add(2);
+        list1.add(3);
+
+        ArrayList<Integer> list2 = new ArrayList<>();
+        list2.add(1);
+        list2.add(2);
+        list2.add(3);
+
+        HashSet<ArrayList<Integer>> set = new HashSet<>();
+        set.add(list1);
+        set.add(list2);
+
+        System.out.println(set);
+        System.out.println("Size of set: " + set.size());  // Output: 1
     }
 
     public static void createLinkedHashSet() {
@@ -429,6 +450,7 @@ public class HashingInJava {
 
     public static void main(String[] args) {
         //createLinkedHashMap();
-        createHashMap(new int[]{});
+        //createHashMap(new int[]{});
+        createHashSet();
     }
 }

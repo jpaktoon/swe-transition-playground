@@ -9,6 +9,9 @@ public class StringCheatSheet {
         // String
         String str1 = "Hello"; String str2 = "Hello";
         String str3 = new String("Hello"); // time: O(n), space O(n) - not recommend if not necessary. Only a specific cases such as new String(char[]);
+        // Byte array / Char array
+        System.out.println(Arrays.toString(str1.getBytes()));
+        System.out.println(Arrays.toString(str1.toCharArray()));
         // String pool
         System.out.println(str1 == str2); // true - O(1)
         System.out.println(str1 == "Hello"); // true - O(1)

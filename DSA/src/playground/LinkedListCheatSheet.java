@@ -2,6 +2,7 @@ package playground;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class LinkedListCheatSheet {
@@ -26,6 +27,10 @@ public class LinkedListCheatSheet {
         System.out.println(llc.get(2)); // O(n), String "second"
         System.out.println(llc.getFirst()); // O(1), internally it uses "first" pointer, String "head"
         System.out.println(llc.getLast()); // O(1), internally it uses "last" pointer, String "tail"
+
+        for (Object o : llc) {
+            System.out.println(o);
+        }
 
         // Contains | Searching
         System.out.println(llc.contains("first")); // O(n), boolean true

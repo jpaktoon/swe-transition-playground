@@ -55,6 +55,7 @@ public class ArrayCheatSheet {
         as1.add("test"); // time: O(1), space O(1) if the size is not exceed 10 else O(n)
         System.out.println(as1); // String: [test]
         as1.add(0, "begin"); // time: O(n), space O(1) if the size is not exceed 10 else O(n)
+        // can used add First() instead
         System.out.println(as1); // String: [begin, test]
         as1.addAll(fruits1); // time: O(m+n), space O(m+n)
         System.out.println(as1); // String: [begin, test, Apple, Banana, Orange]

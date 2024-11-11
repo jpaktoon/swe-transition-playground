@@ -1,13 +1,9 @@
-package progex;
+package project;
 
-import java.io.*;
 import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
 
 // Change this class however you want. Print your output to STDOUT
-public class Solution2 {
+public class Solution2 { // 10/20
 
     public Solution2() {
     }

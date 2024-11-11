@@ -1,13 +1,9 @@
-package progex;
+package project;
 
-import java.io.*;
 import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
 
 // Change this class however you want. Print your output to STDOUT
-public class Solution {
+public class Solution { // 11/20
 
     public Solution() {
     }
@@ -67,6 +63,7 @@ public class Solution {
     }
 
     private Profile getProfile(String profileId, int version) {
+        if (version == 0 || !profiles.containsKey(profileId)) return null;
 
         if (!cacheVersions.isEmpty() && cacheVersions.containsKey(profileId) && cacheVersions.get(profileId) <= version) {
             int retriveIndexInCache = version - cacheVersions.get(profileId);
@@ -158,3 +155,4 @@ public class Solution {
         }
     }
 }
+

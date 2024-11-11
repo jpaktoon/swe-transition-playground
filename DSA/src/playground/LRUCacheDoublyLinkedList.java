@@ -31,9 +31,9 @@ public class LRUCacheDoublyLinkedList {
 
     public int get(int key) {
         if (map.containsKey(key)) {
-            Node node = map.get(key);
-            removeNode(node);
-            addToHead(node);
+            Node node = map.get(key); // O(1), faster lookup
+            removeNode(node); // O(n)
+            addToHead(node); // O(1)
             return node.value;
         }
         return -1;

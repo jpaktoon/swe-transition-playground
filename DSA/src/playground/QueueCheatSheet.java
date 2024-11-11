@@ -12,15 +12,15 @@ public class QueueCheatSheet {
 
         /*
          ***********
-         * Queue : LinkedList - add() and poll() / remove() and peek()
+         * Queue : LinkedList - offer() and poll() / remove() and peek()
          * ********
          */
         Queue<String> queueLinkedList = new LinkedList<>();
 
         // add elements to the queue
-        queueLinkedList.add("apple"); // add(item) -> linkLast(item)
-        queueLinkedList.add("banana");
-        queueLinkedList.add("cherry");
+        queueLinkedList.offer("apple"); // offer(item) -> linkLast(item)
+        queueLinkedList.offer("banana");
+        queueLinkedList.offer("cherry");
 
         // print the queue
         System.out.println("Queue: " + queueLinkedList); // [apple, banana, cherry]
@@ -33,7 +33,7 @@ public class QueueCheatSheet {
         System.out.println("Queue after removal: " + queueLinkedList); // [banana, cherry]
 
         // add another element to the queue
-        queueLinkedList.add("date");
+        queueLinkedList.offer("date");
 
         // peek at the element at the front of the queue
         String peeked = queueLinkedList.peek();
@@ -46,16 +46,16 @@ public class QueueCheatSheet {
 
         /*
          ***********
-         * Queue : PriorityQueue - add() and poll() / remove() and peek()
+         * Queue : PriorityQueue - offer() and poll() / remove() and peek()
          * ********
          */
         Queue<Integer> pQueue = new PriorityQueue<>(); // Creating empty priority queue
 
-        // Adding items to the pQueue using add()
-        pQueue.add(10); // O(log n)
-        pQueue.add(20);
-        pQueue.add(15);
-        pQueue.add(15);
+        // Adding items to the pQueue using offer()
+        pQueue.offer(10); // O(log n)
+        pQueue.offer(20);
+        pQueue.offer(15);
+        pQueue.offer(15);
 
         // Printing the top element of PriorityQueue
         System.out.println(pQueue.peek()); // 10
@@ -97,14 +97,14 @@ public class QueueCheatSheet {
 
         /*
          ***********
-         * Deque : ArrayDeque - add() and poll() / remove() and peek()
+         * Deque : ArrayDeque - offer() and poll() / remove() and peek()
          * ********
         */
         Deque<String> xmenQueue = new ArrayDeque<>();
-        xmenQueue.add("Wolverine"); // O(1) First in & first out
-        xmenQueue.add("Juggernaut"); // O(1)
-        xmenQueue.add("Xavier"); // O(1)
-        xmenQueue.add("Beast"); // O(1) Last in & last out
+        xmenQueue.offer("Wolverine"); // O(1) First in & first out
+        xmenQueue.offer("Juggernaut"); // O(1)
+        xmenQueue.offer("Xavier"); // O(1)
+        xmenQueue.offer("Beast"); // O(1) Last in & last out
 
         int queueSize = xmenQueue.size();
         for (int i = 0; i < queueSize; i++) {
@@ -112,7 +112,7 @@ public class QueueCheatSheet {
         }
         System.out.println();
 
-        xmenQueue.add("Wolverine"); // O(1)
+        xmenQueue.offer("Wolverine"); // O(1)
         xmenQueue.addFirst("Cyclops"); // O(1)
         xmenQueue.addLast("Xavier"); // O(1)
 
@@ -122,7 +122,7 @@ public class QueueCheatSheet {
         }
         System.out.println();
 
-        xmenQueue.add("Wolverine"); // O(1)
+        xmenQueue.offer("Wolverine"); // O(1)
         xmenQueue.addFirst("Cyclops"); // O(1)
         xmenQueue.addLast("Xavier"); // O(1)
 

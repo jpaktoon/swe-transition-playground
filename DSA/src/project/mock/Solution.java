@@ -1,3 +1,5 @@
+package project.mock;
+
 import java.io.*;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -10,8 +12,7 @@ public class Solution {
 
     static HashMap<Integer, HashSet<String>> documents = new HashMap<>();
 
-    static class SearchResult
-    {
+    static class SearchResult {
         int documentNumber;
         int matchCount;
         SearchResult(int documentNumber, int matchCount) {
@@ -21,6 +22,10 @@ public class Solution {
 
         public int getDocumentNumber() {
             return this.documentNumber;
+        }
+
+        public int getMatchCount() {
+            return matchCount;
         }
 
         @Override
@@ -33,8 +38,11 @@ public class Solution {
 
         @Override
         public int compare(SearchResult o1, SearchResult o2) {
-            int matchCountCompare =  o2.matchCount - o1.matchCount;
-            int docNumCompare = o1.documentNumber - o2.documentNumber;
+//            int matchCountCompare =  o2.matchCount - o1.matchCount;
+//            int docNumCompare = o1.documentNumber - o2.documentNumber;
+            // handle potential integer overflow
+            int matchCountCompare = Integer.compare(o2.matchCount, o1.matchCount);
+            int docNumCompare = Integer.compare(o1.documentNumber, o2.documentNumber);
             return (matchCountCompare == 0) ? docNumCompare : matchCountCompare;
         }
     }
@@ -47,6 +55,7 @@ public class Solution {
 
     public static String performSearch(final String search) {
         TreeSet<SearchResult> searchResults = new TreeSet<>(new resultComparator());
+        //TreeSet<SearchResult> searchResults = new TreeSet<>(Comparator.comparingInt(SearchResult::getMatchCount).reversed().thenComparingInt(SearchResult::getDocumentNumber));
         System.out.println("Current documents: " + documents);
         HashSet<String> terms = new HashSet<>(Arrays.asList(search.split(" ")));
         // int termSize = terms.size();
@@ -65,6 +74,11 @@ public class Solution {
             if (matchCount > 0) {
                 searchResults.add(new SearchResult(document.getKey(), matchCount));
                 System.out.println("After added search result : " + searchResults);
+            }
+
+            // Maintain the size of TreeSet to only 10 entries
+            if (searchResults.size() > 10) {
+                searchResults.pollLast(); // Remove the smallest entry
             }
         }
         if (searchResults.isEmpty()) searchResults.add(new SearchResult(-1, 0));
